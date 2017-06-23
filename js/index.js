@@ -2,13 +2,11 @@ angular
 	.module('myApp', ['ngMaterial', 'ngMessages'])
     .controller('DemoCtrl', DemoCtrl);
 
-function DemoCtrl($scope, $mdDialog, $mdMedia, $http) {
+function DemoCtrl($scope, $mdDialog, $mdMedia, $http, $timeout) {
     $scope.status = '  ';
     var questList = this;
     questList.allsQ = [];
-	
-
-	
+		
 	questList.del = function(item){
 		  //var index=$scope.questList.allsQ.indexOf(item)
 		  //alert(item);
@@ -20,14 +18,14 @@ function DemoCtrl($scope, $mdDialog, $mdMedia, $http) {
 			function(data){
 				//$scope.response = data
 				$scope.response = 'Zapisano';
-				questList.allsQ = [];
-				
+				questList.allsQ = []; 
+				$timeout(function () { $scope.response = ''; }, 2000);   
+
 			})
 	};
 
     questList.openDialog = function($event) {
 
-		console.log($event);
 		$mdDialog.show({
 			controller: function ($timeout, $q, $scope, $mdDialog) {
 					var questList =this;
@@ -49,9 +47,7 @@ function DemoCtrl($scope, $mdDialog, $mdMedia, $http) {
 			locals: {parent: $scope},
 		})
 		.then(function(answer) {
-			console.log("answer")
-			console.log(answer)
-
+			
 			date = new Date(answer.data);
 			year = date.getFullYear();
 			month = date.getMonth()+1;
@@ -61,14 +57,10 @@ function DemoCtrl($scope, $mdDialog, $mdMedia, $http) {
 			var i = year+'-' + month + '-'+dt;
 
 			questList.allsQ.push({
-				
 				tytul: answer.tytul,
 				data: i,
 				number: answer.number
 			});
-			
-			console.log(questList.allsQ);
-			console.log(questList.allsQ.length);
 		});
     };
 	
@@ -112,9 +104,6 @@ function DemoCtrl($scope, $mdDialog, $mdMedia, $http) {
 			clickOutsideToClose:true
 		})
 		.then(function(answer, itemInArr) {
-			//alert($scope.itemInArr);
-			console.log("answer");
-			console.log(answer);
 			
 			date = new Date(answer.data);
 			year = date.getFullYear();
@@ -136,14 +125,9 @@ function DemoCtrl($scope, $mdDialog, $mdMedia, $http) {
 				number: answer.number
 			};
 			questList.allsQ.splice($scope.itemInArr,1, elements);
-			console.log('index:'+itemInArr);
-			
-			
 			questList.tytul = '';
 			questList.data = '';
 			questList.number = '';
-			console.log(questList.allsQ);
-			console.log(questList.allsQ.length);
 		});
     };
 
