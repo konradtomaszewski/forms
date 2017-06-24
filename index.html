@@ -22,6 +22,7 @@
 	font-size:small;
 	font-weight:bold;
 }
+
 </style>
   </head>
 
@@ -40,8 +41,28 @@
                       <span flex layout ="column"><b>Tytul</b>{{quest.tytul}}</span>
                       <span flex layout ="column"><b>Data</b>{{quest.data}}</span>
                       <span flex layout ="column"><b>Number</b>{{quest.number}}</span>
-                      <md-button class="md-primary md-raised" ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">Edit</md-button>
-                      <md-button class="md-primary md-raised" ng-click="questList.del(questList.allsQ.indexOf(quest))">Del</md-button>
+                      <!--<md-button class="md-primary md-raised" ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">Edit</md-button>
+                      <md-button class="md-primary md-raised" ng-click="questList.del(questList.allsQ.indexOf(quest))">Del</md-button>-->
+
+					  <md-menu>
+						  <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+							<md-icon md-svg-icon="img/more_vert.svg"></md-icon>
+						  </md-button>
+						  <md-menu-content width="3">
+							<md-menu-item>
+								<md-button ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">
+									<md-icon md-svg-icon="img/menu.svg"></md-icon>Edit
+								</md-button>
+							    
+							</md-menu-item>
+							<md-menu-item>
+								<md-button ng-click="questList.del(questList.allsQ.indexOf(quest))">
+									<md-icon md-svg-icon="img/menu.svg"></md-icon>Dlete
+								</md-button>
+							</md-menu-item>
+						  </md-menu-content>
+					  </md-menu>
+
                     </md-card-title-text>
                   </md-card-title>
                 </md-card>
@@ -49,7 +70,7 @@
 			  {{response}}
 			  <p ng-if="questList.allsQ.length"><input type="submit" value="Send" ng-click="postData()"></p>
             </md-content>
-			
+		
     </div>
 
 <script type="text/ng-template" id="dialog.tmpl.html5"></script>
