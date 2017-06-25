@@ -10,7 +10,7 @@ app.controller('DemoCtrl', ['$scope', '$mdDialog', '$mdMedia', '$http', '$timeou
 	};
 	
 	$scope.postData = function () {
-		$http.post('application/models/forms/getForms.php', {params:questList.allsQ}).success(
+		$http.post('application/models/forms/getFormData.php', {params:questList.allsQ}).success(
 			function(data){
 				//$scope.response = data
 				$scope.response = 'Zapisano';
