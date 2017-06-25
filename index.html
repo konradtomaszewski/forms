@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="angular-material.css">
+    <link rel="stylesheet" href="assets/material_design/css/angular-material.css">
     <link rel="stylesheet" href="https://material.angularjs.org/1.0.8/docs.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
@@ -12,7 +12,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script> 
     <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-    <script type="text/javascript" src="angular-material.js"></script>
+    <script type="text/javascript" src="assets/material_design/js/angular-material.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.4.8/angular-locale_pl-pl.js"></script>
@@ -22,60 +22,17 @@
 	font-size:small;
 	font-weight:bold;
 }
-
 </style>
   </head>
 
 
 
   <body>
-    <div ng-controller="DemoCtrl as questList" class="tabsdemoDynamicHeight">
-            <md-content class="md-padding">
-              <h1 class="md-display-2">Lista</h1>
-              <md-button class="md-primary md-raised" ng-click="questList.openDialog($event)" class="md-raised">Open Dialog</md-button>
+    <section><div ng-view></div></section>
+	
+<script src="system/config/config.js"></script>
+<script src="application/controllers/Demo.js"></script>
 
-              <div  layout="column" layout-align="center" >
-                <md-card ng-repeat="quest in questList.allsQ" id="prova">
-                  <md-card-title>
-                    <md-card-title-text layout="row">
-                      <span flex layout ="column"><b>Tytul</b>{{quest.tytul}}</span>
-                      <span flex layout ="column"><b>Data</b>{{quest.data}}</span>
-                      <span flex layout ="column"><b>Number</b>{{quest.number}}</span>
-                      <!--<md-button class="md-primary md-raised" ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">Edit</md-button>
-                      <md-button class="md-primary md-raised" ng-click="questList.del(questList.allsQ.indexOf(quest))">Del</md-button>-->
-
-					  <md-menu>
-						  <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
-							<md-icon md-svg-icon="img/more_vert.svg"></md-icon>
-						  </md-button>
-						  <md-menu-content width="3">
-							<md-menu-item>
-								<md-button ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">
-									<md-icon md-svg-icon="img/edit.svg"></md-icon>Edit
-								</md-button>
-							    
-							</md-menu-item>
-							<md-menu-item>
-								<md-button ng-click="questList.del(questList.allsQ.indexOf(quest))">
-									<md-icon md-svg-icon="img/clear.svg"></md-icon>Dlete
-								</md-button>
-							</md-menu-item>
-						  </md-menu-content>
-					  </md-menu>
-
-                    </md-card-title-text>
-                  </md-card-title>
-                </md-card>
-              </div>
-			  {{response}}
-			  <p ng-if="questList.allsQ.length"><input type="submit" value="Send" ng-click="postData()"></p>
-            </md-content>
-		
-    </div>
-
-<script type="text/ng-template" id="dialog.tmpl.html5"></script>
-<script src="js/index.js"></script>
-<script src="controllers/Demo.js"></script>
 
 </body>
 </html>
