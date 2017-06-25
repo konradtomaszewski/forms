@@ -1,4 +1,3 @@
-
 	var app = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 		app.config(['$routeProvider',
 				function($routeProvider) {
@@ -23,7 +22,15 @@
 							templateUrl: 'application/views/404.html',
 							controller: ''
 						})
-		}]);
+				}
+		]);
+		app.config(['$mdThemingProvider',
+				function($mdThemingProvider) {
+					$mdThemingProvider.theme('indigoTheme') 
+						.dark();
+				}
+		]);
+		
 		app.run(['$location', '$rootScope', function($location, $rootScope) {
 				$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 
@@ -33,4 +40,3 @@
 					}
 				})
 		}]);
-		

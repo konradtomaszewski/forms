@@ -1,4 +1,5 @@
 app.controller('DemoCtrl', ['$scope', '$mdDialog', '$mdMedia', '$http', '$timeout', function ($scope, $mdDialog, $mdMedia, $http, $timeout) {
+	$scope.theme = 'indigo';
     $scope.status = '  ';
     var questList = this;
     questList.allsQ = [];
