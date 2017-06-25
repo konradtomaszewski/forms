@@ -26,8 +26,8 @@
 		]);
 		app.config(['$mdThemingProvider',
 				function($mdThemingProvider) {
-					$mdThemingProvider.theme('indigoTheme') 
-						.dark();
+					//$mdThemingProvider.theme('default');
+					$mdThemingProvider.theme('default_dark').dark();
 				}
 		]);
 		
