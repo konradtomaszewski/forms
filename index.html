@@ -1,9 +1,10 @@
 <!DOCTYPE html>
   <html ng-app="myApp">
   <head>
+  <title>{{title}}</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="angular-material.css">
+    <link rel="stylesheet" href="assets/material_design/css/angular-material.css">
     <link rel="stylesheet" href="https://material.angularjs.org/1.0.8/docs.css">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
@@ -12,7 +13,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script> 
     <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-    <script type="text/javascript" src="angular-material.js"></script>
+    <script type="text/javascript" src="assets/material_design/js/angular-material.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.4.8/angular-locale_pl-pl.js"></script>
@@ -23,59 +24,132 @@
 	font-weight:bold;
 }
 
+.menu-panel-container {
+  pointer-events: auto;
+}
+
+.menu-panel {
+  width: 256px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.menu-panel .menu-divider {
+  width: 100%;
+  height: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  background-color: rgba(0, 0, 0, 0.11);
+}
+
+.menu-panel .menu-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  max-height: 305px;
+  overflow-y: auto;
+  min-width: 256px;
+}
+
+.menu-panel .menu-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 48px;
+  height: 48px;
+  align-content: center;
+  justify-content: flex-start;
+}
+.menu-panel .menu-item > * {
+  width: 100%;
+  margin: auto 0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.menu-panel .menu-item > a.md-button {
+  padding-top: 5px;
+}
+.menu-panel .menu-item > .md-button {
+  display: inline-block;
+  border-radius: 0;
+  margin: auto 0;
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 400;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+  text-align: left;
+}
+.menu-panel .menu-item > .md-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+.menu-panel .menu-item > .md-button md-icon {
+  margin: auto 16px auto 0;
+}
+.menu-panel .menu-item > .md-button p {
+  display: inline-block;
+  margin: auto;
+}
+.menu-panel .menu-item > .md-button span {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.menu-panel .menu-item > .md-button .md-ripple-container {
+  border-radius: inherit;
+}
+
 </style>
   </head>
 
+<body md-theme="default">
+<!--top menu-->
+<div ng-controller="PanelGroupsCtrl as ctrl" ng-cloak >
+<md-toolbar >
+    <div class="md-toolbar-tools">
+		<md-menu>
+		  <md-button ng-click="$mdMenu.open($event)">
+			<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
+		  </md-button>
+		  <md-menu-content width="3">
+			<div ng-repeat="name in ctrl.settings.name"><label>{{name}}</label></div>
+			<md-menu-item ng-repeat="item in ctrl.settings.items">
+				<md-button href="#/{{item}}" ng-click="ctrl.closeMenu()">{{item}}</md-button>
+			</md-menu-item>
+		  </md-menu-content>
+		</md-menu>
 
-
-  <body>
-    <div ng-controller="DemoCtrl as questList" class="tabsdemoDynamicHeight">
-            <md-content class="md-padding">
-              <h1 class="md-display-2">Lista</h1>
-              <md-button class="md-primary md-raised" ng-click="questList.openDialog($event)" class="md-raised">Open Dialog</md-button>
-
-              <div  layout="column" layout-align="center" >
-                <md-card ng-repeat="quest in questList.allsQ" id="prova">
-                  <md-card-title>
-                    <md-card-title-text layout="row">
-                      <span flex layout ="column"><b>Tytul</b>{{quest.tytul}}</span>
-                      <span flex layout ="column"><b>Data</b>{{quest.data}}</span>
-                      <span flex layout ="column"><b>Number</b>{{quest.number}}</span>
-                      <!--<md-button class="md-primary md-raised" ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">Edit</md-button>
-                      <md-button class="md-primary md-raised" ng-click="questList.del(questList.allsQ.indexOf(quest))">Del</md-button>-->
-
-					  <md-menu>
-						  <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
-							<md-icon md-svg-icon="img/more_vert.svg"></md-icon>
-						  </md-button>
-						  <md-menu-content width="3">
-							<md-menu-item>
-								<md-button ng-click="questList.openDialogEdit($event, questList.allsQ.indexOf(quest))">
-									<md-icon md-svg-icon="img/edit.svg"></md-icon>Edit
-								</md-button>
-							    
-							</md-menu-item>
-							<md-menu-item>
-								<md-button ng-click="questList.del(questList.allsQ.indexOf(quest))">
-									<md-icon md-svg-icon="img/clear.svg"></md-icon>Dlete
-								</md-button>
-							</md-menu-item>
-						  </md-menu-content>
-					  </md-menu>
-
-                    </md-card-title-text>
-                  </md-card-title>
-                </md-card>
-              </div>
-			  {{response}}
-			  <p ng-if="questList.allsQ.length"><input type="submit" value="Send" ng-click="postData()"></p>
-            </md-content>
-		
+      <h2>myApp - {{title}}</h2>
+      <span flex></span>
+      <md-menu>
+		  <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+			<md-icon md-svg-icon="assets/material_design/icons/more_vert.svg"></md-icon>
+		  </md-button>
+		  <md-menu-content width="3">
+			<div ng-repeat="name in ctrl.more.name"><label>{{name}}</label></div>
+			<md-menu-item ng-repeat="item in ctrl.more.items">
+				<md-button href="#/{{item}}" ng-click="ctrl.closeMenu()">{{item}}</md-button>
+			</md-menu-item>
+		  </md-menu-content>
+		</md-menu>
     </div>
+  </md-toolbar>
+</div>
 
-<script type="text/ng-template" id="dialog.tmpl.html5"></script>
-<script src="js/index.js"></script>
-<script src="controllers/Demo.js"></script>
+<!--app content-->
+<section><div ng-view></div></section>
+
+
+	
+<!--app config and controllers-->
+<script src="system/config/config.js"></script>
+<script src="application/controllers/Demo.js"></script>
+<script src="application/controllers/topMenu.js"></script>
+
+
 
 </body>
 </html>

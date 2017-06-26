@@ -6,3 +6,4 @@ app.config(function($mdIconProvider) {
       .iconSet("social", 'img/social-icons.svg', 24)
       .iconSet("label_outline", 'img/label_outline.svg', 24);
   })
+
