@@ -101,6 +101,7 @@
 .menu-panel .menu-item > .md-button .md-ripple-container {
   border-radius: inherit;
 }
+
 </style>
   </head>
 
@@ -109,20 +110,31 @@
 <div ng-controller="PanelGroupsCtrl as ctrl" ng-cloak >
 <md-toolbar >
     <div class="md-toolbar-tools">
-      <md-button
-        class="md-icon-button"
-        aria-label="Settings"
-        ng-click="ctrl.showToolbarMenu($event, ctrl.settings)">
-        <md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
-      </md-button>
+		<md-menu>
+		  <md-button ng-click="$mdMenu.open($event)">
+			<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
+		  </md-button>
+		  <md-menu-content width="3">
+			<div ng-repeat="name in ctrl.settings.name"><label>{{name}}</label></div>
+			<md-menu-item ng-repeat="item in ctrl.settings.items">
+				<md-button href="#/{{item}}" ng-click="ctrl.closeMenu()">{{item}}</md-button>
+			</md-menu-item>
+		  </md-menu-content>
+		</md-menu>
+
       <h2>myApp - {{title}}</h2>
       <span flex></span>
-      <md-button
-        class="md-icon-button"
-        aria-label="More"
-        ng-click="ctrl.showToolbarMenu($event, ctrl.more)">
-        <md-icon md-svg-icon="assets/material_design/icons/more_vert.svg"></md-icon>
-      </md-button>
+      <md-menu>
+		  <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+			<md-icon md-svg-icon="assets/material_design/icons/more_vert.svg"></md-icon>
+		  </md-button>
+		  <md-menu-content width="3">
+			<div ng-repeat="name in ctrl.more.name"><label>{{name}}</label></div>
+			<md-menu-item ng-repeat="item in ctrl.more.items">
+				<md-button href="#/{{item}}" ng-click="ctrl.closeMenu()">{{item}}</md-button>
+			</md-menu-item>
+		  </md-menu-content>
+		</md-menu>
     </div>
   </md-toolbar>
 </div>
