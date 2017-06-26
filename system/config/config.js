@@ -2,7 +2,7 @@
 		app.config(['$routeProvider',
 				function($routeProvider) {
 					$routeProvider
-						.when('/forms', {
+						.when('/Forms', {
 							title: 'Forms',
 							templateUrl: 'application/views/forms/forms.html',
 							controller: 'DemoCtrl'
@@ -12,8 +12,8 @@
 							templateUrl: 'charInfo.html',
 							controller: 'people'
 						})
-						.when('/', {
-							title: 'index',
+						.when('/Home', {
+							title: 'Strona główna',
 							templateUrl: 'application/views/start.html',
 							controller: ''
 						})
@@ -24,10 +24,11 @@
 						})
 				}
 		]);
+		
 		app.config(['$mdThemingProvider',
 				function($mdThemingProvider) {
-					//$mdThemingProvider.theme('default');
-					$mdThemingProvider.theme('default_dark').dark();
+					$mdThemingProvider.theme('default')
+						.primaryPalette('indigo');
 				}
 		]);
 		

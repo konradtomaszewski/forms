@@ -1,6 +1,7 @@
 <!DOCTYPE html>
   <html ng-app="myApp">
   <head>
+  <title>{{title}}</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="assets/material_design/css/angular-material.css">
@@ -22,6 +23,7 @@
 	font-size:small;
 	font-weight:bold;
 }
+
 .menu-panel-container {
   pointer-events: auto;
 }
@@ -113,7 +115,7 @@
         ng-click="ctrl.showToolbarMenu($event, ctrl.settings)">
         <md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
       </md-button>
-      <h2>Toolbar with grouped panels (Maximum open: 2)</h2>
+      <h2>myApp - {{title}}</h2>
       <span flex></span>
       <md-button
         class="md-icon-button"
@@ -127,6 +129,8 @@
 
 <!--app content-->
 <section><div ng-view></div></section>
+
+
 	
 <!--app config and controllers-->
 <script src="system/config/config.js"></script>

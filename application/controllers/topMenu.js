@@ -1,56 +1,21 @@
   app.controller('PanelGroupsCtrl', PanelGroupsCtrl);
   app.controller('PanelMenuCtrl', PanelMenuCtrl);
 
- function PanelGroupsCtrl($mdPanel) {
+ function PanelGroupsCtrl($mdPanel,$scope,$location) {
     this.settings = {
       name: 'settings',
-      items: [
-        'Home',
-        'About',
-        'Contact'
-      ]
+      items: ['Home','Forms']
     };
-    this.favorite = {
-      name: 'favorite',
-      items: [
-        'Add to Favorites'
-      ]
+	this.more = {
+      name: 'settings',
+      items: ['Wyloguj']
     };
-    this.more = {
-      name: 'more',
-      items: [
-        'Account',
-        'Sign Out'
-      ]
-    };
-    this.tools = {
-      name: 'tools',
-      items: [
-        'Create',
-        'Delete'
-      ]
-    };
-    this.code = {
-      name: 'code',
-      items: [
-        'See Source',
-        'See Commits'
-      ]
-    };
-
-    this.menuTemplate = '' +
+	
+   this.menuTemplate = '' +
         '<div class="menu-panel" md-whiteframe="4">' +
         '  <div class="menu-content">' +
         '    <div class="menu-item" ng-repeat="item in ctrl.items">' +
-        '      <button class="md-button">' +
-        '        <span>{{item}}</span>' +
-        '      </button>' +
-        '    </div>' +
-        '    <md-divider></md-divider>' +
-        '    <div class="menu-item">' +
-        '      <button class="md-button" ng-click="ctrl.closeMenu()">' +
-        '        <span>Close Menu</span>' +
-        '      </button>' +
+        '        <a class="md-button" ng-click="ctrl.closeMenu()" href="#/{{item}}">{{item}}</a>' +
         '    </div>' +
         '  </div>' +
         '</div>';
@@ -85,7 +50,7 @@
           items: menu.items
         },
         openFrom: $event,
-        focusOnOpen: false,
+        focusOnOpen: true,
         zIndex: 100,
         propagateContainerEvents: true,
         groupName: ['toolbar', 'menus']
@@ -94,40 +59,10 @@
       $mdPanel.open(config);
     };
 
-    this.showContentMenu = function($event, menu) {
-      var template = this.menuTemplate;
-
-      var position = $mdPanel.newPanelPosition()
-          .relativeTo($event.srcElement)
-          .addPanelPosition(
-            $mdPanel.xPosition.ALIGN_START,
-            $mdPanel.yPosition.BELOW
-          );
-
-      var config = {
-        id: 'content_' + menu.name,
-        attachTo: angular.element(document.body),
-        controller: PanelMenuCtrl,
-        controllerAs: 'ctrl',
-        template: template,
-        position: position,
-        panelClass: 'menu-panel-container',
-        locals: {
-          items: menu.items
-        },
-        openFrom: $event,
-        focusOnOpen: false,
-        zIndex: 100,
-        propagateContainerEvents: true,
-        groupName: 'menus'
-      };
-
-      $mdPanel.open(config);
-    };
   }
 
-  function PanelMenuCtrl(mdPanelRef) {
+  function PanelMenuCtrl(mdPanelRef, $location,) {
     this.closeMenu = function() {
       mdPanelRef && mdPanelRef.close();
-    }
+    };
   }
