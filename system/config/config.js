@@ -18,8 +18,8 @@
 							controller: ''
 						})
 						.otherwise({
-							title: 'Strona główna',
-							templateUrl: 'application/views/start.html',
+							title: '404',
+							templateUrl: 'application/views/404.html',
 							controller: ''
 						})
 				}
