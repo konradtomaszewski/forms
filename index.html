@@ -22,6 +22,9 @@
 
 
 <style>
+body{
+	overflow:hidden;
+}
 .validation-messages{
 	color:red;
 	font-size:small;
@@ -32,16 +35,23 @@
 }
 .user_name{
 	font-weight:bold;
-	font-size:10pt;
+	font-size:11pt;
 }
 .user_email{
 
-	font-size:8pt;
+	font-size:9pt;
 }
-.button, .button:hover, .button:focus, .button:active, .button:target {
-width:100% !important;
-text-align:left;
-background-color:#fff !important;
+.button{
+	border:0px !important;
+	width:100% !important;
+	text-align:left;
+	text-decoration:none;
+	line-height:50px;
+	padding-left:20px;
+	color:#333;
+}
+.button:hover{
+	background-color:#ECECEC;
 }
 </style>
   </head>
@@ -95,7 +105,7 @@ background-color:#fff !important;
 	<md-content ng-repeat="item in ctrl.user">
 		<md-item >
 			<md-item-content md-ink-ripple layout="row" class="inset1">
-				<md-button class="button" href="#/{{item.menu}}" ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/{{item.icon}}"></md-icon>{{item.menu}}</md-button>
+				<a class="button" href="#/{{item.menu}}" ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/{{item.icon}}" style="padding-right:10px;"></md-icon>{{item.menu}}</a>
 			</md-item-content>
 		</md-item>
 	</md-content>
