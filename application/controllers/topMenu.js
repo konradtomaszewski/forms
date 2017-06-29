@@ -2,10 +2,16 @@
   app.controller('PanelMenuCtrl', PanelMenuCtrl);
 
  function PanelGroupsCtrl($mdPanel,$scope,$location, $timeout, $mdSidenav) {
-    this.settings = {
-		name: ['Menu'],
-		items: ['Home','Forms']
-	};
+    this.settings = [
+		{
+			icon: '',
+			menu: 'Home'
+		},
+		{
+			icon: '',
+			menu: 'Forms'
+		}
+	];
 	this.user = [
 		{
 			icon: 'settings_b.svg',

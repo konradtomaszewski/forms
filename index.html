@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
   <html ng-app="myApp">
   <head>
-  <title>{{title}}</title>
+  <title ng-bind="title"></title>
     <meta charset="UTF-8">
 	<!-- angular library (1.4.8)-->
 	<script type="text/javascript" src="system/js/angular.js"></script>
@@ -66,8 +66,8 @@ body{
 			<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
 		  </md-button>
 		  <md-menu-content width="3">
-			<md-menu-item ng-repeat="item in ctrl.settings.items">
-				<md-button href="#/{{item}}" ng-click="ctrl.closeMenu()">{{item}}</md-button>
+			<md-menu-item ng-repeat="item in ctrl.settings">
+				<md-button href="#/{{item.menu}}" ng-click="ctrl.closeMenu()">{{item.menu}}</md-button>
 			</md-menu-item>
 		  </md-menu-content>
 		</md-menu>
