@@ -125,8 +125,12 @@ body{
 <md-content class="md-padding">
 	<section><div ng-view></div></section>
 </md-content>
-<!--app config and controllers-->
-<script src="system/config/config.js"></script>
+<!--app core-->
+<script src="system/config/module.js"></script>
+<script src="system/config/route.js"></script>
+<script src="system/config/run.js"></script>
+<script src="system/config/config.theme.js"></script>
+<!--app controllers-->
 <script src="application/controllers/Demo.js"></script>
 <script src="application/controllers/topMenu.js"></script>
 <script src="application/controllers/userMenu.js"></script>
