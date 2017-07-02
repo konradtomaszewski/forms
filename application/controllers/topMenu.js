@@ -16,10 +16,6 @@
 		{
 			icon: 'settings_b.svg',
 			menu: 'Ustawienia'
-		},
-		{
-			icon: 'logout.svg',
-			menu: 'Wyloguj'
 		}
 		
 	];

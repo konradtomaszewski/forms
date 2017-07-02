@@ -13,6 +13,9 @@
     <script type="text/javascript" src="system/js/jquery.min.js" ></script>
 	<script type="text/javascript" src="system/js/moment-with-locales.min.js"></script>
 	<script type="text/javascript" src="system/js/angular-locale_pl-pl.js"></script>
+	<script type="text/javascript" src="system/js/angular-md5.js"></script>
+	
+	    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
 	
 	<!--material design library (1.1.4)-->
 	<script type="text/javascript" src="assets/material_design/js/angular-material.js"></script>
@@ -109,6 +112,14 @@ body{
 			</md-item-content>
 		</md-item>
 	</md-content>
+	<md-divider></md-divider>	
+	<md-content>
+		<md-item ng-controller="logout">
+			<md-item-content md-ink-ripple layout="row" class="inset1">
+				<a class="button" ng-click="del()"><md-icon md-svg-icon="assets/material_design/icons/logout.svg" style="padding-right:10px;"></md-icon>Wyloguj</a>
+			</md-item-content>
+		</md-item>
+	</md-content>
 </md-sidenav>
 </div>
 <md-content class="md-padding">
@@ -119,6 +130,7 @@ body{
 <script src="application/controllers/Demo.js"></script>
 <script src="application/controllers/topMenu.js"></script>
 <script src="application/controllers/userMenu.js"></script>
+<script src="application/controllers/logout.js"></script>
 
 </body>
 </html>

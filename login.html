@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html ng-app="myApp">
+<style>
+@import url('//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css');
+.login-form {
+  md-card {
+    padding: 0!important;
+
+    md-card-title {
+      background-color: blue;
+    }
+  }
+}
+</style>
+   <body ng-controller="AuthController as authCtrl">
+
+
+    <md-content layout="row" layout-align="space-around" layout-padding="layout-padding" ng-cloak="ng-cloak" class="login-form">
+      <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <h2><span>Login Form</span></h2>
+          </div>
+        </md-toolbar>
+        <md-card-content>
+          <form name="Form" ng-submit="authCtrl.postForm()">
+            <md-input-container class="md-block">
+              <label>Login</label>
+              <input type="text" name="username" ng-model="authCtrl.inputData.username" placeholder="" required=""/>
+              <div ng-messages="Form.username.$error" role="alert" multiple="">
+                <div ng-message="required" class="my-message">Please enter your email.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <input type="password" name="password" ng-model="authCtrl.inputData.password" placeholder="" required="" md-maxlength="16"/>
+              <div ng-messages="Form.password.$error" role="alert" multiple="">
+                <div ng-message="required" class="my-message">Please enter your password.</div>
+                <div ng-message="md-maxlength" class="my-message">Too long.</div>
+              </div>
+            </md-input-container>
+            <md-button ng-disabled="!Form.$valid"  type="submit" ng-submit="authCtrl.postForm()" class="md-raised md-primary">&nbsp Login &nbsp</md-button>
+          </form>
+        </md-card-content>
+      </md-card>
+    </md-content>
+    <!-- Angular Material Dependencies-->
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-messages.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-aria.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+<script src="//cdn.jsdelivr.net/angular-material-icons/0.4.0/angular-material-icons.min.js"></script>
+<script type="text/javascript" src="system/js/angular-md5.js"></script>
+<script>
+var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages','angular-md5']);
+    app.controller('AuthController', ['$scope','$http','md5', function($scope, $http, md5) {        
+            this.postForm = function() {
+                var encodedString = 'username=' +
+                    encodeURIComponent(this.inputData.username) +
+                    '&password=' +
+                    encodeURIComponent(this.inputData.password);
+					
+					var username = this.inputData.username;
+					console.log(md5.createHash(username));
+                $http({
+                    method: 'POST',
+                    url: 'userauth.php',
+                    data: encodedString,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                })
+                
+                .success(function(data) {
+					console.log(data);
+                        //console.log(data);
+                        if ( data.trim() === 'correct') {
+							localStorage.setItem('user_auth', md5.createHash(username));
+							localStorage.setItem('username', username);
+                            window.location.href = './';
+                        } else {
+                            $scope.errorMsg = "Username and password do not match.";
+                        }
+                })            
+            }
+    }]);
+</script>
