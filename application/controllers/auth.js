@@ -18,8 +18,8 @@ var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages
 					console.log(data);
                         //console.log(data);
                         if ( data.trim() === 'correct') {
-							localStorage.setItem('user_auth', md5.createHash(username));
-							localStorage.setItem('username', username);
+							sessionStorage.setItem('user_auth', md5.createHash(username));
+							sessionStorage.setItem('username', username);
                             window.location.href = './';
                         } else {
                             $scope.errorMsg = "Username and password do not match.";
