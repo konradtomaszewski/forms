@@ -15,16 +15,24 @@ var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages
                 })
                 
                 .success(function(data) {
-					console.log(data);
-                        //console.log(data);
-                        if ( data.trim() === 'correct') {
-							sessionStorage.setItem('user_auth', md5.createHash(username));
-							sessionStorage.setItem('username', username);
-							//$http({get data user logged and insert to sessionStorage})
-                            window.location.href = './';
-                        } else {
-                            $scope.errorMsg = "Username and password do not match.";
-                        }
-                })            
+					if ( data.trim() === 'correct') {
+						$http({
+							method: 'POST',
+							url: 'application/models/auth/getUserDetails.php',
+							data: 'username='+username,
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+						}).then(function (response) {
+								sessionStorage.setItem('user_id', response.data.id);
+								sessionStorage.setItem('username', response.data.username);
+								sessionStorage.setItem('username_letter', response.data.username_letter);
+								sessionStorage.setItem('email', response.data.email);
+								sessionStorage.setItem('user_auth', md5.createHash(response.data.username));
+						})
+							window.location.href = './';
+                    } 
+					else {
+							$scope.errorMsg = "Username and password do not match.";
+                    }
+                })
             }
     }]);
