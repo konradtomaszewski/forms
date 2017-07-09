@@ -16,6 +16,7 @@ var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages
                 
                 .success(function(data) {
 					if ( data.trim() === 'correct') {
+						//sessionStorage.setItem('user_auth', md5.createHash(username));
 						$http({
 							method: 'POST',
 							url: 'application/models/auth/getUserDetails.php',
@@ -26,9 +27,10 @@ var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages
 								sessionStorage.setItem('username', response.data.username);
 								sessionStorage.setItem('username_letter', response.data.username_letter);
 								sessionStorage.setItem('email', response.data.email);
-								sessionStorage.setItem('user_auth', md5.createHash(response.data.username));
+								sessionStorage.setItem('user_auth', md5.createHash(username));
+								window.location.href = './';
 						})
-							window.location.href = './';
+						
                     } 
 					else {
 							$scope.errorMsg = "Username and password do not match.";
