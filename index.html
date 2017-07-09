@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 	<!-- angular library (1.4.8)-->
 	<script type="text/javascript" src="system/js/angular.js"></script>
-    <script type="text/javascript" src="system/js/angular-animate.min.js"></script>
+	<script type="text/javascript" src="system/js/angular-animate.min.js"></script>
     <script type="text/javascript" src="system/js/angular-route.min.js"></script>
     <script type="text/javascript" src="system/js/angular-aria.min.js"></script>
     <script type="text/javascript" src="system/js/angular-messages.min.js"></script> 
@@ -23,7 +23,13 @@
     <link rel="stylesheet" href="assets/material_design/css/angular-material.css">
     <link rel="stylesheet" href="assets/material_design/css/docs.css">
 
-
+	<!--app init-->
+	<script src="system/config/app.init.module.js"></script>
+	<script src="system/config/app.run.js"></script>
+	<!--app config-->
+	<script src="system/config/config.route.js"></script>
+	<script src="system/config/config.theme.js"></script>
+	
 <style>
 body{
 	overflow:hidden;
@@ -62,78 +68,62 @@ body{
 <body md-theme="default">
 <!--top menu-->
 <div ng-controller="PanelGroupsCtrl as ctrl" ng-cloak >
-<md-toolbar >
-    <div class="md-toolbar-tools">
-		<md-menu md-offset="30 40">
-		  <md-button ng-click="$mdMenu.open($event)">
-			<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
-		  </md-button>
-		  <md-menu-content width="3">
-			<md-menu-item ng-repeat="item in ctrl.settings">
-				<md-button href="#/{{item.menu}}" ng-click="ctrl.closeMenu()">{{item.menu}}</md-button>
-			</md-menu-item>
-		  </md-menu-content>
-		</md-menu>
+	<md-toolbar >
+		<div class="md-toolbar-tools">
+			<md-menu md-offset="30 40">
+			  <md-button ng-click="$mdMenu.open($event)">
+				<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
+			  </md-button>
+			  <md-menu-content width="3">
+				<md-menu-item ng-repeat="item in ctrl.settings">
+					<md-button href="#/{{item.menu}}" ng-click="ctrl.closeMenu()">{{item.menu}}</md-button>
+				</md-menu-item>
+			  </md-menu-content>
+			</md-menu>
 
-		<h2>myApp - {{title}}</h2>
-		<span flex></span>
-	 
-		<md-button ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/settings.svg"></md-icon></md-button>
-	   		
-      <!--<md-menu md-offset="30 40">
-		  <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
-			<md-icon md-svg-icon="assets/material_design/icons/more_vert.svg"></md-icon>
-		  </md-button>
-		  <md-menu-content width="3">
-			<md-menu-item ng-repeat="item in ctrl.more.items">
-				<md-button href="#/{{item}}" ng-click="ctrl.closeMenu()">{{item}}</md-button>
-			</md-menu-item>
-		  </md-menu-content>
-		</md-menu>-->
-    </div>
-  </md-toolbar>
-
-
-
-
-<md-sidenav class="md-sidenav-right" md-component-id="right"  md-whiteframe="24">
-	<md-toolbar class="md-tall md-hue-2" style="background-image: url('http://wallpapercraft.net/wp-content/uploads/2016/09/Google-Material-Design-720p-Background.jpg'); background-size: cover">
-		<div layout="column" class="md-toolbar-tools-bottom inset" >
-			<md-button class="md-fab"><span style="font-size:22pt">K</span></md-button>
-			<div class="user_name">Konrad Tomaszewski</div>
-			<div class="user_email">konrad.tomaszewski85@gmail.com</div>
+			<h2>myApp - {{title}}</h2>
+			<span flex></span>
+		 
+			<md-button ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/settings.svg"></md-icon></md-button>
 		</div>
-    </md-toolbar>
-	<md-subheader>Management</md-subheader>
-	<md-content ng-repeat="item in ctrl.user">
-		<md-item >
-			<md-item-content md-ink-ripple layout="row" class="inset1">
-				<a class="button" href="#/{{item.menu}}" ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/{{item.icon}}" style="padding-right:10px;"></md-icon>{{item.menu}}</a>
-			</md-item-content>
-		</md-item>
-	</md-content>
-	<md-divider></md-divider>	
-	<md-content>
-		<md-item ng-controller="logout">
-			<md-item-content md-ink-ripple layout="row" class="inset1">
-				<a class="button" ng-click="del()"><md-icon md-svg-icon="assets/material_design/icons/logout.svg" style="padding-right:10px;"></md-icon>Wyloguj</a>
-			</md-item-content>
-		</md-item>
-	</md-content>
-</md-sidenav>
+	</md-toolbar>
+
+	<md-sidenav class="md-sidenav-right" md-component-id="right"  md-whiteframe="24">
+		<md-toolbar ng-controller="userDetails" class="md-tall md-hue-2" style="background-image: url('http://wallpapercraft.net/wp-content/uploads/2016/09/Google-Material-Design-720p-Background.jpg'); background-size: cover">
+			<div layout="column" class="md-toolbar-tools-bottom inset" >
+				<md-button class="md-fab"><span style="font-size:22pt">K</span></md-button>
+				<div class="user_name">{{username}}</div>
+				<div class="user_email">{{email}}</div>
+			</div>
+		</md-toolbar>
+		<md-subheader>Management</md-subheader>
+		<md-content ng-repeat="item in ctrl.user">
+			<md-item >
+				<md-item-content md-ink-ripple layout="row" class="inset1">
+					<a class="button" href="#/{{item.menu}}" ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/{{item.icon}}" style="padding-right:10px;"></md-icon>{{item.menu}}</a>
+				</md-item-content>
+			</md-item>
+		</md-content>
+		<md-divider></md-divider>	
+		<md-content>
+			<md-item ng-controller="logout">
+				<md-item-content md-ink-ripple layout="row" class="inset1">
+					<a class="button" ng-click="del()"><md-icon md-svg-icon="assets/material_design/icons/logout.svg" style="padding-right:10px;"></md-icon>Wyloguj</a>
+				</md-item-content>
+			</md-item>
+		</md-content>
+	</md-sidenav>
 </div>
+
 <md-content class="md-padding">
 	<section><div ng-view></div></section>
 </md-content>
-<!--app core-->
-<script src="system/config/module.js"></script>
-<script src="system/config/route.js"></script>
-<script src="system/config/run.js"></script>
-<script src="system/config/config.theme.js"></script>
-<!--app controllers-->
+
+<!--app load controllers-->
 <script src="application/controllers/Demo.js"></script>
 <script src="application/controllers/topMenu.js"></script>
 <script src="application/controllers/userMenu.js"></script>
+<script src="application/controllers/userDetails.js"></script>
 <script src="application/controllers/logout.js"></script>
 
 </body>

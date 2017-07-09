@@ -20,6 +20,7 @@ var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages
                         if ( data.trim() === 'correct') {
 							sessionStorage.setItem('user_auth', md5.createHash(username));
 							sessionStorage.setItem('username', username);
+							//$http({get data user logged and insert to sessionStorage})
                             window.location.href = './';
                         } else {
                             $scope.errorMsg = "Username and password do not match.";
