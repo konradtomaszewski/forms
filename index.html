@@ -71,17 +71,28 @@ body{
 	<md-toolbar >
 		<div class="md-toolbar-tools">
 			<md-menu md-offset="30 40">
-			  <md-button ng-click="$mdMenu.open($event)">
-				<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
-			  </md-button>
-			  <md-menu-content width="3">
-				<md-menu-item ng-repeat="item in ctrl.settings">
-					<md-button href="#/{{item.menu}}" ng-click="ctrl.closeMenu()">{{item.menu}}</md-button>
-				</md-menu-item>
-			  </md-menu-content>
+				<md-button ng-click="$mdMenu.open($event)">
+					<md-icon md-svg-icon="assets/material_design/icons/menu.svg"></md-icon>
+				</md-button>
+				<md-menu-content width="3">
+					<md-menu-item ng-repeat="item in ctrl.main_menu">
+						<md-button href="#/{{item.menu}}" ng-click="ctrl.closeMenu()">{{item.menu}}</md-button>
+					</md-menu-item>
+				</md-menu-content>
 			</md-menu>
 
 			<h2>myApp - {{title}}</h2>
+			
+			<md-menu md-offset="-50 45">
+				<md-button ng-click="$mdMenu.open($event)">
+					menu1
+				</md-button>
+				<md-menu-content width="3">
+					<md-menu-item ng-repeat="item in ctrl.menu1">
+						<md-button href="#/{{item.menu}}" ng-click="ctrl.closeMenu()">{{item.menu}}</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
 			<span flex></span>
 		 
 			<md-button ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/settings.svg"></md-icon></md-button>
@@ -97,7 +108,7 @@ body{
 			</div>
 		</md-toolbar>
 		<md-subheader>Management</md-subheader>
-		<md-content ng-repeat="item in ctrl.user">
+		<md-content ng-repeat="item in ctrl.sidebar_menu">
 			<md-item >
 				<md-item-content md-ink-ripple layout="row" class="inset1">
 					<a class="button" href="#/{{item.menu}}" ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/{{item.icon}}" style="padding-right:10px;"></md-icon>{{item.menu}}</a>
@@ -125,6 +136,7 @@ body{
 <script src="application/controllers/userMenu.js"></script>
 <script src="application/controllers/userDetails.js"></script>
 <script src="application/controllers/logout.js"></script>
+<script src="application/controllers/404.js"></script>
 
 </body>
 </html>

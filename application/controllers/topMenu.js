@@ -2,7 +2,7 @@
   app.controller('PanelMenuCtrl', PanelMenuCtrl);
 
  function PanelGroupsCtrl($mdPanel,$scope,$location, $timeout, $mdSidenav) {
-    this.settings = [
+    this.main_menu = [
 		{
 			icon: '',
 			menu: 'Home'
@@ -12,7 +12,13 @@
 			menu: 'Forms'
 		}
 	];
-	this.user = [
+	 this.menu1 = [
+		{
+			icon: '',
+			menu: 'test'
+		}
+	];
+	this.sidebar_menu = [
 		{
 			icon: 'settings_b.svg',
 			menu: 'Ustawienia'
@@ -30,4 +36,4 @@
     this.closeMenu = function() {
       mdPanelRef && mdPanelRef.close();
     };
-  }
+}
