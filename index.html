@@ -64,7 +64,38 @@ body{
 .button:hover{
 	background-color:#ECECEC;
 }
+.camera{
+	display:inherit;
+}
+.camera img{
+	padding:5px 5px 5px 5px;
+}
 
+.camera p{
+	display:none;
+}
+.camera_hover{
+	border:1px solid #ddd;
+	height:30px;
+	background-color: rgba(0, 0, 0, 0.5);
+	width:240px;
+	cursor:pointer;
+}
+.camera_hover img{
+	padding:5px 5px 5px 5px;
+}
+.camera_hover p{
+	position:absolute;
+	top:-5px;
+	font-size:12px;
+	font-weight:bold;
+	font-family:arial;
+	display:inherit;
+	color:#fff;
+	height:30px;
+	width:240px;
+	text-align:center;
+}
 <!--material icons rules-->
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-20 { font-size: 20px; }
@@ -115,13 +146,16 @@ body{
 	</md-toolbar>
 
 	<md-sidenav class="md-sidenav-right" md-component-id="right"  md-whiteframe="24">
-		
 		<md-toolbar ng-controller="userDetails" class="md-tall md-hue-2" style="background-image: url('http://wallpapercraft.net/wp-content/uploads/2016/09/Google-Material-Design-720p-Background.jpg'); background-size: cover">
 			<div layout="column" class="md-toolbar-tools-bottom inset" >
 				<md-button class="md-fab"><span style="font-size:22pt">{{username_letter}}</span></md-button>
 				<div class="user_name">{{username}}</div>
 				<div class="user_email">{{email}}</div>
-				<div style="position:absolute;top:5px;right:5px"><i class="material-icons md-dark md-20">photo_camera</i></div>
+				<div style="position:absolute;top:5px;right:5px">
+					<div class="camera" ng-class="{camera_hover: hover}" ng-class="{camera_text_hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+						<p>Zmień tło</p><img src="assets/img/camera.png" align="right">
+					</div>
+				</div>
 			</div>
 		</md-toolbar>
 		<md-subheader>Management</md-subheader>
