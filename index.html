@@ -66,6 +66,9 @@ body{
 }
 .camera{
 	display:inherit;
+	width:50px;
+	transition-property: width;
+    transition-duration: 1s;
 }
 .camera img{
 	padding:5px 5px 5px 5px;
@@ -153,7 +156,7 @@ body{
 				<div class="user_email">{{email}}</div>
 				<div style="position:absolute;top:5px;right:5px">
 					<div class="camera" ng-class="{camera_hover: hover}" ng-class="{camera_text_hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-						<p>Zmień tło</p><img src="assets/img/camera.png" align="right">
+						<p ng-click="showAdvanced($event)">Zmień tło</p><img src="assets/img/camera.png" align="right">
 					</div>
 				</div>
 			</div>
