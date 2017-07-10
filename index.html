@@ -3,6 +3,8 @@
   <head>
   <title ng-bind="title"></title>
     <meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 	<!-- angular library (1.4.8)-->
 	<script type="text/javascript" src="system/js/angular.js"></script>
 	<script type="text/javascript" src="system/js/angular-animate.min.js"></script>
@@ -15,7 +17,7 @@
 	<script type="text/javascript" src="system/js/angular-locale_pl-pl.js"></script>
 	<script type="text/javascript" src="system/js/angular-md5.js"></script>
 	
-	    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+	<script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
 	
 	<!--material design library (1.1.4)-->
 	<script type="text/javascript" src="assets/material_design/js/angular-material.js"></script>
@@ -62,6 +64,19 @@ body{
 .button:hover{
 	background-color:#ECECEC;
 }
+
+<!--material icons rules-->
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-20 { font-size: 20px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 </style>
   </head>
 
@@ -100,17 +115,19 @@ body{
 	</md-toolbar>
 
 	<md-sidenav class="md-sidenav-right" md-component-id="right"  md-whiteframe="24">
+		
 		<md-toolbar ng-controller="userDetails" class="md-tall md-hue-2" style="background-image: url('http://wallpapercraft.net/wp-content/uploads/2016/09/Google-Material-Design-720p-Background.jpg'); background-size: cover">
 			<div layout="column" class="md-toolbar-tools-bottom inset" >
 				<md-button class="md-fab"><span style="font-size:22pt">{{username_letter}}</span></md-button>
 				<div class="user_name">{{username}}</div>
 				<div class="user_email">{{email}}</div>
+				<div style="position:absolute;top:5px;right:5px"><i class="material-icons md-dark md-20">photo_camera</i></div>
 			</div>
 		</md-toolbar>
 		<md-subheader>Management</md-subheader>
 		<md-content ng-repeat="item in ctrl.sidebar_menu">
 			<md-item >
-				<md-item-content md-ink-ripple layout="row" class="inset1">
+				<md-item-content md-ink-ripple layout="row">
 					<a class="button" href="#/{{item.menu}}" ng-click="ctrl.toggleRight()"><md-icon md-svg-icon="assets/material_design/icons/{{item.icon}}" style="padding-right:10px;"></md-icon>{{item.menu}}</a>
 				</md-item-content>
 			</md-item>
@@ -118,7 +135,7 @@ body{
 		<md-divider></md-divider>	
 		<md-content>
 			<md-item ng-controller="logout">
-				<md-item-content md-ink-ripple layout="row" class="inset1">
+				<md-item-content md-ink-ripple layout="row">
 					<a class="button" ng-click="del()"><md-icon md-svg-icon="assets/material_design/icons/logout.svg" style="padding-right:10px;"></md-icon>Wyloguj</a>
 				</md-item-content>
 			</md-item>
