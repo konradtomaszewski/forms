@@ -5,7 +5,10 @@
 		$scope.email = sessionStorage.email;
 		//$scope.sidenav_bg = sessionStorage.sidenav_bg;
 		
-		if(!$rootScope.background) $rootScope.background = 'assets/img/1.jpg';
+		if(!$rootScope.sidenav_bg){
+			$rootScope.sidenav_bg = '1.jpg';
+			$rootScope.sidenav_color = '#FFF';
+		}
 
 		
 
@@ -18,11 +21,6 @@
 				targetEvent: ev,
 				clickOutsideToClose:true,
 				fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-			})
-			.then(function(answer) {
-				$scope.status = 'You said the information was "' + answer + '".';
-			}, function() {
-				$scope.status = 'You cancelled the dialog.';
 			});
 		};
 		
@@ -41,10 +39,10 @@
 			
 			 
   
-			$scope.change_bground = function (image_bg) {
-				//$registry.reset();
-				$rootScope.background = 'assets/img/'+image_bg;
-				//$rootScope.background = $registry.get('sidenav_bg2');
+			$scope.change_sidenav_style = function (image_bg, font_color) {
+				$rootScope.sidenav_bg = image_bg;
+				$rootScope.sidenav_color = font_color;
+
 			};
 		  }
  });
