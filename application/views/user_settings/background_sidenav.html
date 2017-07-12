@@ -1,6 +1,6 @@
 <md-dialog aria-label="tła">
   <form ng-cloak>
-    <md-toolbar>
+    <!--<md-toolbar>
       <div class="md-toolbar-tools">
         <h2>tła</h2>
         <span flex></span>
@@ -8,13 +8,14 @@
           <md-icon md-svg-src="assets/material_design/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
-    </md-toolbar>
+    </md-toolbar>-->
 
-    <md-dialog-content>
-      ramki z tłami do wyboru
+    <md-dialog-content ng-controller="userDetails">
+     <md-button ng-click="change_bground('1.jpg')">1.jpg</md-button>
+     <md-button ng-click="change_bground('2.jpg')">2.jpg</md-button>
     </md-dialog-content>
 
-    <md-dialog-actions layout="row">
+    <!--<md-dialog-actions layout="row">
       
       <md-button ng-click="cancel()">
        anuluj
@@ -22,6 +23,6 @@
       <md-button ng-click="answer('useful')">
         zapisz
       </md-button>
-    </md-dialog-actions>
+    </md-dialog-actions>-->
   </form>
 </md-dialog>

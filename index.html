@@ -36,6 +36,9 @@
 body{
 	overflow:hidden;
 }
+*:focus{
+    outline: none;
+}
 .validation-messages{
 	color:red;
 	font-size:small;
@@ -149,7 +152,8 @@ body{
 	</md-toolbar>
 
 	<md-sidenav class="md-sidenav-right" md-component-id="right"  md-whiteframe="24">
-		<md-toolbar ng-controller="userDetails" class="md-tall md-hue-2" style="background-image: url('http://wallpapercraft.net/wp-content/uploads/2016/09/Google-Material-Design-720p-Background.jpg'); background-size: cover">
+		<!--<md-toolbar ng-controller="userDetails" class="md-tall md-hue-2" ng-style="sidenav_bg_style">-->
+		<md-toolbar ng-controller="userDetails" class="md-tall md-hue-2" ng-style="{'background-image': 'url(' + background + ')'}" style="background-size:cover">
 			<div layout="column" class="md-toolbar-tools-bottom inset" >
 				<md-button class="md-fab"><span style="font-size:22pt">{{username_letter}}</span></md-button>
 				<div class="user_name">{{username}}</div>

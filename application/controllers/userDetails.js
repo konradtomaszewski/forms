@@ -1,8 +1,14 @@
- app.controller('userDetails', function ($scope, $mdDialog) {
+ app.controller('userDetails', function ($scope, $rootScope, $mdDialog) {
 		$scope.user_id = sessionStorage.id;
 		$scope.username_letter = sessionStorage.username_letter;
 		$scope.username = sessionStorage.username;
 		$scope.email = sessionStorage.email;
+		//$scope.sidenav_bg = sessionStorage.sidenav_bg;
+		
+		if(!$rootScope.background) $rootScope.background = 'assets/img/1.jpg';
+
+		
+
 		
 		$scope.showAdvanced = function(ev) {
 			$mdDialog.show({
@@ -20,7 +26,7 @@
 			});
 		};
 		
-		function DialogController($scope, $mdDialog) {
+		function DialogController($scope, $rootScope, $mdDialog) {
 			$scope.hide = function() {
 			  $mdDialog.hide();
 			};
@@ -31,6 +37,14 @@
 
 			$scope.answer = function(answer) {
 			  $mdDialog.hide(answer);
+			};
+			
+			 
+  
+			$scope.change_bground = function (image_bg) {
+				//$registry.reset();
+				$rootScope.background = 'assets/img/'+image_bg;
+				//$rootScope.background = $registry.get('sidenav_bg2');
 			};
 		  }
  });
