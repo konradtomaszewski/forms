@@ -12,7 +12,7 @@ $stmt->execute();
 $result = $stmt->fetchAll();
 foreach($result as $row)
 {
-	$userDetails['id'] = $row['id'];
+	$userDetails['user_id'] = $row['id'];
 	$userDetails['username'] = $row['username'];
 	$userDetails['email'] = $row['email'];
 	$userDetails['sidenav_bg'] = $row['sidenav_bg'];
