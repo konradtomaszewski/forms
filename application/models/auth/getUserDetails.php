@@ -15,6 +15,7 @@ foreach($result as $row)
 	$userDetails['id'] = $row['id'];
 	$userDetails['username'] = $row['username'];
 	$userDetails['email'] = $row['email'];
+	$userDetails['sidenav_bg'] = $row['sidenav_bg'];
 	$userDetails['username_letter'] = ucfirst(substr($row['username'], 0, 1));
 }
 

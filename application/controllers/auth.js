@@ -23,11 +23,12 @@ var app = angular.module('myApp', ['ngMaterial','ngAnimate','ngAria','ngMessages
 							data: 'username='+username,
 							headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 						}).then(function (response) {
-								sessionStorage.setItem('user_id', response.data.id);
+								sessionStorage.setItem('user_id', response.data.user_id);
 								sessionStorage.setItem('username', response.data.username);
 								sessionStorage.setItem('username_letter', response.data.username_letter);
 								sessionStorage.setItem('email', response.data.email);
 								sessionStorage.setItem('user_auth', md5.createHash(username));
+								sessionStorage.setItem('sidenav_bg', response.data.sidenav_bg);
 								window.location.href = './';
 						})
 						
