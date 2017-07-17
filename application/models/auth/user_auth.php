@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../../../system/config/database.php';
+require_once '../../../system/config/config.database.php';
  
 //define database object
 global $dbc;
