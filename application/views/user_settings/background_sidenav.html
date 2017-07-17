@@ -1,24 +1,40 @@
+<style>
+.bg_container{
+	height:auto;
+	overflow:hidden;
+	padding: 4px 4px 0px 4px;
+}
+.bg{
+	width: 120px;
+	height: 80px;
+	border: 2px solid #888;
+}
+
+.bg:hover{
+	border:2px solid #3f51b5;
+}
+</style>
 <md-dialog aria-label="tła">
   <form ng-cloak>
-    <!--<md-toolbar>
+    <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>tła</h2>
+        <h2>Zmień tło</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon md-svg-src="assets/material_design/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
-    </md-toolbar>-->
+    </md-toolbar>
 
-    <md-dialog-content ng-controller="userDetails">
-     <md-button ng-click="change_sidenav_style('1.jpg','#FFF')"><img src="assets/img/1.jpg" width="120"/></md-button>
-     <md-button ng-click="change_sidenav_style('2.jpg','#666')"><img src="assets/img/2.jpg" width="120"/></md-button>
-     <md-button ng-click="change_sidenav_style('3.jpg','#666')"><img src="assets/img/3.jpg" width="120"/></md-button>
-     <md-button ng-click="change_sidenav_style('4.jpg','#FFF')"><img src="assets/img/4.jpg" width="120"/></md-button>
-     <md-button ng-click="change_sidenav_style('5.jpg','#FFF')"><img src="assets/img/5.jpg" width="120"/></md-button>
-     <md-button ng-click="change_sidenav_style('6.jpg','#FFF')"><img src="assets/img/6.jpg" width="120"/></md-button>
+    <md-dialog-content class="bg_container" ng-controller="userDetails">
+     <img src="assets/img/1.jpg" class="bg" ng-click="change_sidenav_style('1.jpg','#FFF')"/>
+     <img src="assets/img/2.jpg" class="bg" ng-click="change_sidenav_style('2.jpg','#666')"/>
+     <img src="assets/img/3.jpg" class="bg" ng-click="change_sidenav_style('3.jpg','#666')"/><br />
+     <img src="assets/img/4.jpg" class="bg" ng-click="change_sidenav_style('4.jpg','#666')"/>
+     <img src="assets/img/5.jpg" class="bg" ng-click="change_sidenav_style('5.jpg','#666')"/>
+     <img src="assets/img/6.jpg" class="bg" ng-click="change_sidenav_style('6.jpg','#666')"/>
     </md-dialog-content>
-
+	
     <!--<md-dialog-actions layout="row">
       
       <md-button ng-click="cancel()">
